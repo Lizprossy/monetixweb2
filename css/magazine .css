@@ -1,0 +1,8 @@
+#blog-posts{
+    margin: 100px;
+    display: grid;
+    border-radius: 15px;
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fit, 400px);
+  }
+  

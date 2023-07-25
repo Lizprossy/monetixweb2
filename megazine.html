@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <div id="ghost-content"></div>
+
+<script>
+  fetch('https://monetix-lending.ghost.io/ghost/api/v3/content/posts/?key=b3d5ff751d4105ec368c24eedd')
+    .then(response => response.json())
+    .then(data => {
+      const ghostContent = document.getElementById('ghost-content');
+      data.posts.forEach(post => {
+        const postElement = document.createElement('div');
+        const imageElement = document.createElement('img');
+        imageElement.src = post.feature_image; // Assuming the image URL is available in the "feature_image" field
+        const titleElement = document.createElement('h2');
+        titleElement.textContent = post.title;
+        const excerptElement = document.createElement('p');
+        excerptElement.textContent = post.excerpt;
+        postElement.appendChild(imageElement);
+        postElement.appendChild(titleElement);
+        postElement.appendChild(excerptElement);
+        ghostContent.appendChild(postElement);
+      });
+    })
+    .catch(error => console.log(error));
+</script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

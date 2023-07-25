@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>magazine </title>
+    <style>
+      .post {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.post h2 {
+  font-size: 20px;
+}
+
+.post p {
+  margin-bottom: 10px;
+}
+
+.post img {
+  max-width: 100%;
+  height: auto;
+}
+
+.post .read-more-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+    </style>
+</head>
+<body>
+  <div id="post-container"></div>
+
+
+<!--<script>
+  const contentApiKey = 'b3d5ff751d4105ec368c24eedd';
+const apiUrl = 'https://monetix-lending.ghost.io/ghost/api/v3/content/';
+
+// Fetch the latest blog posts
+fetch(apiUrl + 'posts/?key=' + contentApiKey)
+  .then(response => response.json())
+  .then(data => {
+    // Process the received data
+    const posts = data.posts;
+
+    // Display the posts on your website
+    const postContainer = document.getElementById('post-container');
+    posts.forEach(post => {
+      const postElement = document.createElement('div');
+      postElement.innerHTML = `<h2>${post.title}</h2><p>${post.excerpt}</p>`;
+      postElement.addEventListener('click', () => {
+        // Show full post content on click
+        alert(post.html);
+      });
+      postContainer.appendChild(postElement);
+    });
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+</script>-->
+
+<script>
+  const contentApiKey = 'b3d5ff751d4105ec368c24eedd';
+const apiUrl = 'https://monetix-lending.ghost.io/ghost/api/v3/content/';
+
+// Fetch the latest blog posts
+fetch(apiUrl + 'posts/?key=' + contentApiKey)
+  .then(response => response.json())
+  .then(data => {
+    // Process the received data
+    const posts = data.posts;
+
+    // Display the posts on your website
+    const postContainer = document.getElementById('post-container');
+    posts.forEach(post => {
+      const postElement = document.createElement('div');
+      postElement.innerHTML = `
+        <h2>${post.title}</h2>
+        <p>${post.excerpt}</p>
+        <img src="${post.feature_image}" alt="Post Image">
+        <p>Tags: ${post.tags.map(tag => tag.name).join(', ')}</p>
+        <p>Date: ${new Date(post.published_at).toDateString()}</p>
+        <button class="read-more-btn">Read More</button>
+      `;
+
+      postElement.querySelector('.read-more-btn').addEventListener('click', () => {
+        // Show full post content on click
+        alert(post.html);
+      });
+
+      postContainer.appendChild(postElement);
+    });
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+</script>
+</body>
+</html>
